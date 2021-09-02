@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +11,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/**
+ * requiring the routing class
+ */
+use Illuminate\Support\Facades\Route;
+
+/**
+ * requiring controller classes for routing
+ */
+use App\Http\Controllers\SiteController;
+
+//homepage route
+Route::get('/', [SiteController::class, 'getHomePage']);
+
+//example with optional parameter
+//Route::get('blog/{slug?}', 'DemoController@getBlogPage');
+
+//example with required parameter
+//Route::get('blog/{slug}', 'DemoController@getBlogPage');
+
+//form route
+//Route::post('/process-form', 'DemoController@loginProcess');
