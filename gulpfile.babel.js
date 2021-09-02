@@ -19,7 +19,7 @@ const autoprefixer = require('gulp-autoprefixer');
 
 const server = browserSync.create();
 
-const projectURL = 'http://laravel.test';
+const proxyURL = 'http://laravel.test';
 
 const resourceURL = 'resources/assets/';
 const publishURL = 'public/'
@@ -88,7 +88,7 @@ function fonts() {
 
 function browsersync() {
   server.init({
-    proxy: projectURL,
+    proxy: proxyURL,
   });
 
   watch(`${resourceURL}sass/**/*.scss`, styles);
