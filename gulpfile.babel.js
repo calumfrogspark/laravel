@@ -19,7 +19,7 @@ const autoprefixer = require('gulp-autoprefixer');
 
 const server = browserSync.create();
 
-const projectURL = 'http://james-retail.test';
+const projectURL = 'http://laravel.test';
 
 const resourceURL = 'resources/assets/';
 const publishURL = 'public/'
