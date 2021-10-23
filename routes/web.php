@@ -15,6 +15,7 @@
  * requiring the routing class
  */
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * requiring controller classes for routing
@@ -32,3 +33,6 @@ Route::get('/', [SiteController::class, 'getHomePage']);
 
 //form route
 //Route::post('/process-form', 'DemoController@loginProcess');
+
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
