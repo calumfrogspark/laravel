@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,7 +11,37 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+mix.webpackConfig({
+    stats: {
+        warnings: false,
+    },
+});
+
+mix.vue();
+
+mix.js("resources/assets/js/app.js", "public/js/app.min.js").js(
+    "resources/assets/js/nova.js",
+    "public/vendor/nova/js/nova.min.js"
+);
+
+mix.sass(
+    "resources/assets/sass/nova.scss",
+    "public/vendor/nova/css/nova.min.css"
+)
+    .options({
+        processCssUrls: false,
+    })
+    .sass("resources/assets/sass/app.scss", "public/css/bundle.min.css")
+    .options({
+        processCssUrls: false,
+    });
+
+// mix.copyDirectory('resources/assets/fonts', 'public/fonts');
+
+// if we are not in production then we run the browsersync proxy for dev purposes
+if (!mix.inProduction()) {
+    mix.browserSync({
+        proxy: "james-retail.test",
+        watch: true,
+    });
+}
